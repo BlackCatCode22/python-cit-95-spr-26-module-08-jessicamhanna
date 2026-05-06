@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Global Weather Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 50px; }
+        .dashboard { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 30px; width: 280px; text-align: center; transition: transform 0.3s; }
+        .card:hover { transform: translateY(-10px); }
+        h2 { color: #333; margin-bottom: 5px; }
+        .temp { font-size: 48px; font-weight: bold; color: #007bff; margin: 10px 0; }
+        .condition { font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 1px; min-height: 40px; }
+        img { width: 80px; margin: 15px 0; border-radius: 50%; }
+        .desc { font-size: 14px; color: #777; line-height: 1.4; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        {% for loc in locations %}
+        <div class="card">
+            <h2>{{ loc.city }}</h2>
+            <div class="condition">{{ loc.condition }}</div>
+            <img src="{{ loc.icon }}" alt="weather icon">
+            <div class="temp">{{ loc.temp }}°{{ loc.unit }}</div>
+            <div class="desc">{{ loc.detailed }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
